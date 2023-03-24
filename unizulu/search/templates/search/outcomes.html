@@ -1,0 +1,62 @@
+
+<!---{% include 'course.html'%}-->
+{% block content%}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Outcomes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #more{display:none}
+    </style>
+    </head>
+    <body>
+        <div id="dbase" >
+            {%for data in data%}
+ 
+           <h2>Course Name : {{data.course_name}}</h2><span id="dots">...</span><span id="more">
+        <p1>
+           <h3>Faculty:{{data.faculty}}</h3>
+           <p><strong>APS Score:</strong> {{data.points_requirements}}</p>
+           <p><strong>Subject Required:</strong> {{data.subject_requirements}}</p>
+ 
+           <p><strong>Description:</strong> {{data.course_description}}</p>
+           <p><strong>Careers:</strong> {{data.careers_offered}}</p>
+           </span> </p1>
+            <button onclick="myFunction()" id="myBtn">Read more</button>
+             {%endfor%}
+    <script>    
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+              
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+    }    
+    let dbase = document.querySelector('#dbase')
+        let submit = document.querySelector('.submit')
+        
+        submit.addEventListener('click' , function() {
+            dbase.style.display = 'block'
+        });
+
+        submit.addEventListener('onsubmit' , function() {
+            document.querySelector('forms').value;
+
+            return false
+        });
+</script>
+</body>
+    
+</html>
+ 
+    {%endblock%}

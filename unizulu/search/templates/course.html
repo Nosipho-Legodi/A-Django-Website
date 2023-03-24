@@ -1,0 +1,35 @@
+{% load static %} 
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta hhtp-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link rel="stylesheet"  href= "{% static 'project.css' %}">
+
+
+       
+  </head>
+  <body>
+    <div class="header">
+      <img src="{% static 'unizulu\image\image.jpg' %}" style="width:160px;height:160px;"/>
+      <div class="Name">
+        <h1>UNIZULU COURSE FINDER</h1>
+      </div>
+      <div class="header-right">
+      <img src="{% static 'unizulu/image.png' %}" style="width:160px;height:160px;">
+      </div>
+    </div>
+      
+    <div class="btn-group">
+     <button class="button" onclick="document.location.href='/home'" >Home</button>
+      <button class="button" onclick="document.location.href='/education'">Faculty of Education</button>
+      <button class="button" onclick="document.location.href='/commerce'">Faculty of CAL</button>
+      <button class="button"onclick="document.location.href='/Science'">Faculty of science</button>
+      <button class="button" onclick="document.location.href='/Art'"> Faculty of Arts</button>
+  </div>
+<hr>

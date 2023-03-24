@@ -1,0 +1,123 @@
+
+{% include 'course.html'%}
+{% block content%}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Search course</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <style>
+            .accordion {
+              background-color:dodgerblue;
+              color: white;
+              cursor: pointer;
+              padding: 18px;
+              width: 50%;
+              border: none;
+              text-align: left;
+              outline: none;
+              font-size: 15px;
+              transition: 0.4s;
+            }
+            
+            .active, .accordion:hover {
+              background-color:black; 
+            }
+            
+            .panel {
+              padding: 0 18px;
+              display: none;
+              background-color: white;
+              overflow: hidden;
+            }
+            </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="course">
+                <div class="column" >
+                 
+                 <h1 id="Search">Search Course</h1>
+                <form class="forms" method=" GET" action= "{% url 'results'%}">
+                    <input id="lable" name="q" type="text" placeholder="Enter Course you desire eg: Bcom Accounting" required>
+                    <br></br>
+                    <button type="submit" class="submit"> Search</button>
+                </form>
+                 </div> 
+
+                
+                <div class="column" >
+                <h1 id="Search">Search Career</h1>
+                <form class="forms" method=" GET" action= "{% url 'career'%}">
+                    <input id="lable" name="p" type="text" placeholder="Enter Career of your choice eg: Data Analyst" required>
+                    <br></br>
+                    <button type="submit" class="submit" style="position:absolute"> Search</button>
+                </form>
+                </div>        
+            </div>
+        </div>
+
+    <div id="dbase" >
+      {% for msg in messages%}
+      
+      {{msg}}
+
+
+     {%endfor%}
+        {%for data in data%}
+
+        
+
+          
+        <button class= "accordion">{{data.course_name}} </button>
+        <div class= "panel">
+          <h3>Faculty:{{data.faculty}}</h3>
+          <p><strong>APS Score:</strong> {{data.points_requirements}}</p>
+          <p><strong>Subject Required:</strong> {{data.subject_requirements}}</p>
+
+          <p><strong>Description:</strong> {{data.course_description}}</p>
+          <p><strong>Careers:</strong> {{data.careers_offered}}</p>
+          <p>Click Here for online application:</p><a href="http://cao.ac.za/apply.aspx?content=apply">CAO online</a>
+         
+        </div>
+        {%endfor%}
+       
+    </div>
+
+        <script>
+            let dbase = document.querySelector('#dbase')
+            let submit = document.querySelector('.submit')
+            
+            submit.addEventListener('click' , function() {
+                dbase.style.display = 'block'
+            });
+
+            submit.addEventListener('onsubmit' , function() {
+                document.querySelector('forms').value;
+
+                return false
+            });
+
+    var acc = document.getElementsByClassName("accordion");
+         var i;
+
+    for (i = 0; i < acc.length; i++) {
+         acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+         var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+        </script>
+
+    </body>
+</html>
+ 
+    {%endblock%}

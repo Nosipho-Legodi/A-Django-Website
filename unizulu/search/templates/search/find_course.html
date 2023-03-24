@@ -1,0 +1,264 @@
+{% include 'course.html' %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Search course</title>
+        <meta charset = "utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <style>
+            .accordion {
+              background-color:dodgerblue;
+              color: white;
+              cursor: pointer;
+              padding: 18px;
+              width: 50%;
+              border: none;
+              text-align: left;
+              outline: none;
+              font-size: 15px;
+              transition: 0.4s;
+            }
+            
+            .active, .accordion:hover {
+              background-color:black; 
+            }
+            
+            .panel {
+              padding: 0 18px;
+              display: none;
+              background-color: white;
+              overflow: hidden;
+            
+        }
+        @media (min-width:0px) and (max-width: 767px){
+
+            .div -elements-name {
+                width: 100%
+                }
+            }
+            </style>
+    </head>
+    <body>
+        <div style="margin-left: 10px;">
+            <p>Please enter your subjects and percentage you obtained in matric (excluding L.O) to see the list of programs you qualify for according to your results.</p>
+            <p><strong style="color:red;">Please note</strong> that even if you qualify for that program it does guarantee that you will be admitted. </p>
+        </div>        
+        <br>
+        <div id="Enter">
+            <h2>Enter Subjects</h2>
+        </div>
+
+    <div class="container">
+    <form action="" method = "GET" name ="calculator" onsubmit="return validateForm()" required>
+        <div>
+            <select class = "subject" name="sub1" required aria-required = "true">
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option  name="sub" >{{i}}</option>
+                    {% endfor %}
+                
+            </select>
+        
+
+            <select class = "marks" name="marks1" required>
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor%}
+            </select>
+        
+        </div>
+
+     
+        
+        
+            <br>
+            <br>
+
+        <div>
+            <select class = "subject" name="sub2" required>
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option>{{i}}</option>
+                    {% endfor %}
+            </select>
+            
+    
+            <select class ="marks" name="marks2">
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor %}
+            </select>
+            </div>   
+            <br> 
+            <br>
+                
+        <div>
+            <select class = "subject" name="sub3">
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option>{{i}}</option>
+                    {% endfor %}
+                </select>
+
+            <select class ="marks" name="marks3">
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor %}
+            </select>
+        
+        
+        </div>   
+        <br>
+        <br>
+                    
+        <div>
+            <select class = "subject" name="sub4">
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option>{{i}}</option>
+                    {% endfor %}
+            </select>
+
+
+            <select class ="marks" name="marks4">
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor %}
+            </select>           
+            
+        </div>   
+        <br> 
+        <br>
+
+        <div>
+            <select class = "subject" name = "sub5">
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option>{{i}}</option>
+                    {% endfor %}
+            </select>            
+            
+            <select class ="marks" name="marks5">
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor %}
+            </select>
+
+        </div>   
+        <br>
+        <br> 
+
+        <div>
+            <select class = "subject" name=" sub6">
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option>{{i}}</option>
+                    {% endfor %}
+            </select>
+        
+            <select class ="marks" name="marks6">
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor %}
+            </select>            
+
+
+        </div>   
+        <br>
+        <br>
+        <div>
+            <select class = "subject" name = "sub7">
+                <option disabled="disabled" selected="selected">Select Subject</option>
+                    {% for i in list %}
+                <option>{{i}}</option>
+                    {% endfor %}
+            </select>
+            
+            <select class ="marks" name="marks7">
+                <option disabled="disabled" selected="selected">%</option>
+                    {% for z in list4 %}
+                <option>{{z}}</option>
+                    {% endfor %}
+            </select>
+            
+            
+
+
+        </div>   
+        <br> 
+        <br>
+
+        <div>
+ 
+        <button type="button" id="add">+</button>       
+        </div> 
+
+       
+        <div style="margin-left: 30px">
+            <button type="Submit" class="submit" value = "submit">Submit</button>
+        </div>
+    </form>
+    </div>
+    <div id="dbase" >
+        <h1><p>This are the results for your search</p></h1>
+        {%for point in point %}
+        <button class= "accordion"><h3>{{point.course_name}}</h3></button>
+        <div class= "panel">
+          <h3>Faculty:{{point.faculty}}</h3>
+          <p><strong>APS Score:</strong> {{point.points_requirements}}</p>
+          <p><strong>Subject Required:</strong> {{point.subject_requirements}}</p>
+
+          <p><strong>Description:</strong> {{point.course_description}}</p>
+          <p><strong>Careers:</strong> {{point.careers_offered}}</p>
+          <p>Click Here for online application:</p><a href="http://cao.ac.za/apply.aspx?content=apply">CAO online</a>
+        </div>
+        {%endfor%}
+    <script>
+
+
+        const add = document.querySelector('#add');
+
+        add.addEventListener('click' , function() {
+            document.createElement('form')
+        })
+
+    var acc = document.getElementsByClassName("accordion");
+        var i;
+
+    for (i = 0; i < acc.length; i++) {
+         acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+         var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+//Validation
+function validateForm() {
+    let x = document.forms["calc"]["calculator"].value;
+    if (x == "") {
+      alert("Name must be filled out");
+      return false;
+    }
+  }
+
+    </script>
+    </body>
+
+    {% for sub1 in sub1%}
+    <h1>{{sub1.subject_requirements}}
+    </h1>
+    {% endfor %}
+</html>

@@ -1,0 +1,63 @@
+{%include 'course.html'%}
+
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Panel</title>
+    <style>
+    form {
+        text-align: center;
+        border-style: solid;
+        margin-left: 600px;
+        margin-right: 600px;
+        padding: 10px;
+        margin-top: 5%;
+
+    }
+
+    input {
+        margin-left: 20px; 
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    label {
+        width: 500px;
+        height:50px;
+        font-size: large;
+    }
+
+    .Admin {
+        Color: white;
+        background-color: #1E90FF;
+        bottom: 50px;
+
+    }
+    </style>
+</head>
+<body>
+
+<div>
+    <form method = 'POST'  action = "">
+        
+        {% csrf_token%}
+        <h1 class="Admin">Admin</h1>
+        <label>Username:</label>
+        <input type = "text" name = "username" placeholder = "Enter Username"/><br>
+        <br>
+        <label>Password:</label>
+        <input type = "password" name = "password" placeholder = "Enter Password"/><br>   
+        <br>
+        <input type = "submit"  value = "login"/>
+        {% for message in messages %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}
+    </form>
+   
+</div>
+</body>
+</html>
+
+
+{%endblock content%}
